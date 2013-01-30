@@ -1,0 +1,73 @@
+\documentclass[a4paper]{article}
+\usepackage[paperwidth=19cm, paperheight=7cm, margin=0.1cm]{geometry}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
+\setlength{\parindent}{0pt}
+\begin{document}
+
+%% Left side
+
+\begin{textblock}{0.2105}(0.005,0.01)
+  \includegraphics[width=4cm]{fig/main}
+\end{textblock}
+
+\begin{textblock}{0.2105}[0,1](0.03,0.90) 
+  This QR Code \\ Contains My Contact \\ Information.  Scan It.
+\end{textblock}
+
+\begin{textblock}{0.01}[0.5,0](0.5,0) 
+  \begin{tikzpicture}
+    \draw(0,0) to (0,\paperheight);
+  \end{tikzpicture}
+\end{textblock}
+
+\begin{textblock}{0.2105}(0.24,0.03)
+  \begin{Huge}\textbf{Jarrell}\end{Huge} \\
+  \begin{Large} Waggoner \end{Large}
+
+  \vspace{2em}
+
+  Student - Graduate
+\end{textblock}
+
+\begin{textblock}{0.2105}[0,1](0.24,0.90)
+  \includegraphics[width=4cm]{fig/logo}
+\end{textblock}
+
+%% Right side
+
+\begin{textblock}{0.1737}[0.5,0.5](0.87,0.4)
+  \includegraphics[width=3.3cm]{fig/main}
+\end{textblock}
+
+\begin{textblock}{0.1737}[0.5,1](0.87,0.9)
+  \begin{center}
+    AKYANZBYXM
+  \end{center}
+\end{textblock}
+
+\begin{textblock}{0.01}[0.5,1](0.75,0.95)
+  \begin{center}
+    \begin{tikzpicture}
+      \draw(0,0) to (0,1);
+    \end{tikzpicture}
+  \end{center}
+\end{textblock}
+
+\begin{textblock}{0.1737}[0.5,0.5](0.63,0.4)
+  \includegraphics[width=3.3cm]{fig/main}
+\end{textblock}
+
+\begin{textblock}{0.1737}[0.5,1](0.63,0.9)
+  \begin{center}
+    RKDEILDWKG
+  \end{center}
+\end{textblock}
+
+\begin{textblock}{0.5}[0.5,0](0.75,0.01)
+  \begin{center} for internal use \end{center}
+\end{textblock}
+
+\end{document}
