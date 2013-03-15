@@ -1,5 +1,5 @@
 \documentclass[a4paper]{article}
-\usepackage[paperwidth=19.304cm, paperheight=7.62cm, margin=0.1cm]{geometry}
+\usepackage[paperwidth=20.32cm, paperheight=7.62cm, margin=0.1cm]{geometry}
 \usepackage{fontspec,xunicode}
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -11,7 +11,7 @@
 \setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
 \setlength{\parindent}{0pt}
 
-\setmainfont{Linux Libertine}
+\setmainfont{Linux Libertine O}
 \setsansfont{Liberation Sans}
 
 % Info
@@ -51,9 +51,9 @@
   \includegraphics[width=4cm]{\qrcode}
 \end{textblock}
 
-\begin{textblock}{0.2105}[0,1](0.03,0.90) 
-  \begin{small}\textsf{This QR Code \\ Contains My Contact \\
-      Information.  Scan It.}\end{small}
+\begin{textblock}{0.2105}[0,1](0.03,0.90)
+  \begin{small}\textsf{This QR Code \\ contains my contact \\
+      info. You can scan it!}\end{small}
   % alternately, you can use 
   % {\fontspec{Liberation Sans} This QR Code \\ Contains My Contact \\ Information.  Scan It.}
   % for a one-time use font
@@ -87,14 +87,14 @@
 
   \vspace{2em}
 
-  \titlename{}
+  \textbf {\begin{huge}\titlename{}\end{huge}}
   \\
   \orgname{}
 
 \end{textblock}
 
-\begin{textblock}{0.2105}[0,1](0.24,0.95)
-  \includegraphics[width=4cm]{fig/logo}
+\begin{textblock}{0.1505}[0,1](0.19,0.90)
+  \includegraphics[width=6cm]{fig/logo}
 \end{textblock}
 
 %% Right side
@@ -123,14 +123,14 @@
 
   \vspace{2em}
 
-  \titlename{}
+  \textbf {\begin{huge}\titlename{}\end{huge}}
   \\
   \orgname{}
 
 \end{textblock}
 
-\begin{textblock}{0.2105}[0,1](0.74,0.95)
-  \includegraphics[width=4cm]{fig/logo}
+\begin{textblock}{0.1505}[0,1](0.69,0.90)
+  \includegraphics[width=6cm]{fig/logo}
 \end{textblock}
 
 % Corner markers
