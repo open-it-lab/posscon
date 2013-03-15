@@ -6,7 +6,7 @@ all: $(proj).pdf multi.pdf
 
 %.pdf: %.tex 
 #	cd fig ; make
-	pdflatex $<
+	xelatex $<
 
 clean:
 	-rm *.{pdf,ps,dvi,fls,aux,bbl,blg,brf,log} *~
