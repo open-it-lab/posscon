@@ -1,30 +1,62 @@
 \documentclass[a4paper]{article}
-\usepackage[paperwidth=19cm, paperheight=7cm, margin=0.1cm]{geometry}
+\usepackage[paperwidth=19.304cm, paperheight=7.62cm, margin=0.1cm]{geometry}
+\usepackage{fontspec,xunicode}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage[absolute]{textpos}
+\usepackage{adjustbox}
 \setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
 \setlength{\parindent}{0pt}
+
+\setmainfont{Linux Libertine}
+\setsansfont{Liberation Sans}
+
+% Info
+% 
+% If you have the above two fonts (and they have the same names on
+% your system), then this file should compile in new TeXLives using
+% xelatex lanyard.tex
+% 
+% This makes liberal use of the `textpos` package to place elements on
+% a grid (note the difference between parens, brackets, and curly braces):
+% \begin{textbock}{width}[opt center point](x position , y position)
+%   stuff
+% \end{textbock}
+% 
+% Basic text commands include
+% 
+% bold: \textbf{text}
+% italic: \emph{text}
+% size: {\fontsize{pt size}{dist between lines} text}
+% font: {\fontspec{font name} text}
+% 
+% At least on some systems, you can get a list of valid font names by
+% running `fc-list` on the command line
+
 \begin{document}
 
 %% Left side
 
-\begin{textblock}{0.2105}(0.005,0.01)
+\begin{textblock}{0.2}(0.015,0.03)
   \includegraphics[width=4cm]{fig/main}
 \end{textblock}
 
 \begin{textblock}{0.2105}[0,1](0.03,0.90) 
-  This QR Code \\ Contains My Contact \\ Information.  Scan It.
+  \begin{small}\textsf{This QR Code \\ Contains My Contact \\ Information.  Scan It.}\end{small}
+  % alternately, you can use 
+  % {\fontspec{Liberation Sans} This QR Code \\ Contains My Contact \\ Information.  Scan It.}
+  % for a one-time use font
 \end{textblock}
 
-\begin{textblock}{0.01}[0.5,0](0.5,0) 
-  \begin{tikzpicture}
-    \draw(0,0) to (0,\paperheight);
-  \end{tikzpicture}
+\begin{textblock}{0.06}(0.12,0.56)
+  \includegraphics[width=\textwidth, angle=30]{fig/arrow}
 \end{textblock}
 
 \begin{textblock}{0.2105}(0.24,0.03)
-  \begin{Huge}\textbf{Jarrell}\end{Huge} \\
+  % example of an absolute (36pt) font
+  {\fontsize{36}{40} \textbf{Jarrell} } \\
+  % example of a relative font specification using one of LaTeX's
+  % built-in names: http://texblog.org/2012/08/29/changing-the-font-size-in-latex/
   \begin{Large} Waggoner \end{Large}
 
   \vspace{2em}
@@ -32,7 +64,7 @@
   Student - Graduate
 \end{textblock}
 
-\begin{textblock}{0.2105}[0,1](0.24,0.90)
+\begin{textblock}{0.2105}[0,1](0.24,0.95)
   \includegraphics[width=4cm]{fig/logo}
 \end{textblock}
 
@@ -68,6 +100,47 @@
 
 \begin{textblock}{0.5}[0.5,0](0.75,0.01)
   \begin{center} for internal use \end{center}
+\end{textblock}
+
+% Corner markers
+
+% top left
+\begin{textblock}{0.02}[0,0](0.001,0.001)
+    \begin{tikzpicture}[x=\textwidth,y=\textwidth]
+      \draw(0,0) to (0,1);
+      \draw(0,1) to (1,1);
+    \end{tikzpicture}
+\end{textblock}
+
+% top right
+\begin{textblock}{0.02}[1,0](0.999,0.001)
+    \begin{tikzpicture}[x=\textwidth,y=\textwidth]
+      \draw(0,0) to (0,1);
+      \draw(0,1) to (-1,1);
+    \end{tikzpicture}
+\end{textblock}
+
+% bottom right
+\begin{textblock}{0.02}[1,1](0.999,0.999)
+    \begin{tikzpicture}[x=\textwidth,y=\textwidth]
+      \draw(0,0) to (0,1);
+      \draw(0,0) to (-1,0);
+    \end{tikzpicture}
+\end{textblock}
+
+% bottom left
+\begin{textblock}{0.02}[0,1](0.001,0.999)
+    \begin{tikzpicture}[x=\textwidth,y=\textwidth]
+      \draw(0,0) to (0,1);
+      \draw(0,0) to (1,0);
+    \end{tikzpicture}
+\end{textblock}
+
+% center line
+\begin{textblock}{0.01}[0.5,0](0.5,0) 
+  \begin{tikzpicture}
+    \draw(0,0) to (0,\paperheight);
+  \end{tikzpicture}
 \end{textblock}
 
 \end{document}
