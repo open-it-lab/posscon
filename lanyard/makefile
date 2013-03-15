@@ -12,7 +12,7 @@ clean:
 	-rm *.{pdf,ps,dvi,fls,aux,bbl,blg,brf,log} *~
 
 deepclean: 
-	cd fig ; make clean
 	-rm *.{pdf,ps,dvi,fls,aux,bbl,blg,brf,log} *~
+	-rm -rf reg-temp.csv output/ vcard/ qrcode/
 
 
