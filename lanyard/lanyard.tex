@@ -4,7 +4,10 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage[absolute]{textpos}
+% \usepackage[absolute,showboxes]{textpos}
 \usepackage{adjustbox}
+\usepackage{calc}
+\usepackage{xifthen}
 \setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
 \setlength{\parindent}{0pt}
 
@@ -33,12 +36,19 @@
 % At least on some systems, you can get a list of valid font names by
 % running `fc-list` on the command line
 
+% defaults if something isn't defined externally
+\providecommand\fname{FirstName}
+\providecommand\lname{LastName}
+\providecommand\titlename{Title}
+\providecommand\orgname{Organization}
+\providecommand\qrcode{fig/main}
+
 \begin{document}
 
 %% Left side
 
 \begin{textblock}{0.2}(0.015,0.03)
-  \includegraphics[width=4cm]{fig/main}
+  \includegraphics[width=4cm]{\qrcode}
 \end{textblock}
 
 \begin{textblock}{0.2105}[0,1](0.03,0.90) 
@@ -53,16 +63,34 @@
   \includegraphics[width=\textwidth, angle=30]{fig/arrow}
 \end{textblock}
 
-\begin{textblock}{0.2105}(0.24,0.03)
-  % example of an absolute (36pt) font
-  {\fontsize{36}{40} \textbf{Jarrell} } \\
-  % example of a relative font specification using one of LaTeX's
-  % built-in names: http://texblog.org/2012/08/29/changing-the-font-size-in-latex/
-  \begin{Large} Waggoner \end{Large}
+\begin{textblock}{0.2405}(0.24,0.03)
+
+  % First and last name should not be allowed outside of the
+  % containing box, so we check that their length (at the default font
+  % size) is not wider than the box.  If not, then keep it as-is.  If
+  % it is, then resize it down to fit.
+  {
+    \def\fnamef{{\fontsize{36}{40}\textbf{\fname}}} % size of fname here
+    \newdimen{\namewidth}
+    \setlength{\namewidth}{\widthof{\fnamef}}
+    \ifthenelse{\lengthtest{\namewidth < \textwidth}}% check if it is too long
+    {\fnamef}% keep as-is
+    {\resizebox{\textwidth}{!}{\fnamef}}% resize
+  }
+
+  {
+    \def\lnamef{\Large{\lname}} % change size of lname here
+    \newdimen{\namewidth}
+    \setlength{\namewidth}{\widthof{\lnamef}}
+    \ifthenelse{\lengthtest{\namewidth < \textwidth}}{\lnamef}{\resizebox{\textwidth}{!}{\lnamef}}
+  }
 
   \vspace{2em}
 
-  Student \\ Graduate
+  \titlename{}
+  \\
+  \orgname{}
+
 \end{textblock}
 
 \begin{textblock}{0.2105}[0,1](0.24,0.95)
@@ -77,22 +105,28 @@
   \includegraphics[width=4cm]{fig/speaking}
 \end{textblock}
 
-% \begin{textblock}{0.2105}[0,1](0.53,0.90) 
-%   \begin{small}\textsf{This QR Code \\ Contains My Contact \\
-%       Information.  Scan It.}\end{small}
-% \end{textblock}
+\begin{textblock}{0.2405}(0.74,0.03)
 
-% \begin{textblock}{0.06}(0.62,0.56)
-%   \includegraphics[width=\textwidth, angle=30]{fig/arrow}
-% \end{textblock}
+  {
+    \def\fnamef{{\fontsize{36}{40}\textbf{\fname}}}%
+    \newdimen{\namewidth}%
+    \setlength{\namewidth}{\widthof{\fnamef}}%
+    \ifthenelse{\lengthtest{\namewidth < \textwidth}}{\fnamef}{\resizebox{\textwidth}{!}{\fnamef}}%
+  }
 
-\begin{textblock}{0.2105}(0.74,0.03)
-  {\fontsize{36}{40} \textbf{Jarrell} } \\
-  \begin{Large} Waggoner \end{Large}
+  {
+    \def\lnamef{\Large{\lname}}
+    \newdimen{\namewidth}
+    \setlength{\namewidth}{\widthof{\lnamef}}
+    \ifthenelse{\lengthtest{\namewidth < \textwidth}}{\lnamef}{\resizebox{\textwidth}{!}{\lnamef}}
+  }
 
   \vspace{2em}
 
-  Student \\ Graduate
+  \titlename{}
+  \\
+  \orgname{}
+
 \end{textblock}
 
 \begin{textblock}{0.2105}[0,1](0.74,0.95)
