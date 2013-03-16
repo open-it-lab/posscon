@@ -101,36 +101,35 @@
 
 % duplicated from the left, except I added 0.5 to all the x-coordinates
 
-\begin{textblock}{0.2}(0.515,0.03)
-  \includegraphics[width=4cm]{fig/speaking}
+\begin{textblock}{0.45}[0.5,0](0.75,0.03)
+
+  \begin{center}
+
+    {
+      \def\fnamef{{\fontsize{36}{40}\textbf{\fname}}}%
+      \newdimen{\namewidth}%
+      \setlength{\namewidth}{\widthof{\fnamef}}%
+      \ifthenelse{\lengthtest{\namewidth < \textwidth}}{\fnamef}{\resizebox{\textwidth}{!}{\fnamef}}%
+    }
+
+    {
+      \def\lnamef{\Large{\lname}}
+      \newdimen{\namewidth}
+      \setlength{\namewidth}{\widthof{\lnamef}}
+      \ifthenelse{\lengthtest{\namewidth < \textwidth}}{\lnamef}{\resizebox{\textwidth}{!}{\lnamef}}
+    }
+
+    \vspace{2em}
+
+    \textbf {\begin{huge}\titlename{}\end{huge}}
+    \\
+    \orgname{}
+
+  \end{center}
 \end{textblock}
 
-\begin{textblock}{0.2405}(0.74,0.03)
-
-  {
-    \def\fnamef{{\fontsize{36}{40}\textbf{\fname}}}%
-    \newdimen{\namewidth}%
-    \setlength{\namewidth}{\widthof{\fnamef}}%
-    \ifthenelse{\lengthtest{\namewidth < \textwidth}}{\fnamef}{\resizebox{\textwidth}{!}{\fnamef}}%
-  }
-
-  {
-    \def\lnamef{\Large{\lname}}
-    \newdimen{\namewidth}
-    \setlength{\namewidth}{\widthof{\lnamef}}
-    \ifthenelse{\lengthtest{\namewidth < \textwidth}}{\lnamef}{\resizebox{\textwidth}{!}{\lnamef}}
-  }
-
-  \vspace{2em}
-
-  \textbf {\begin{huge}\titlename{}\end{huge}}
-  \\
-  \orgname{}
-
-\end{textblock}
-
-\begin{textblock}{0.1505}[0,1](0.69,0.90)
-  \includegraphics[width=6cm]{fig/logo}
+\begin{textblock}{0.35}[0.5,1](0.75,0.95)
+  \includegraphics[width=\textwidth]{fig/logo}
 \end{textblock}
 
 % Corner markers
