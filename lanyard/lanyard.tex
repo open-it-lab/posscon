@@ -42,16 +42,18 @@
 \providecommand\titlename{Title}
 \providecommand\orgname{Organization}
 \providecommand\qrcode{fig/main}
+\providecommand\badge{fig/attending}
 
 \begin{document}
+\sloppy
 
 %% Left side
 
 \begin{textblock}{0.2}(0.015,0.03)
-  \includegraphics[width=4cm]{\qrcode}
+  \includegraphics[width=\textwidth]{\qrcode}
 \end{textblock}
 
-\begin{textblock}{0.2105}[0,1](0.03,0.90)
+\begin{textblock}{0.2105}[0,1](0.03,0.95)
   \begin{small}\textsf{This QR code \\ contains my contact \\
       info. You can scan it!}\end{small}
   % alternately, you can use 
@@ -59,7 +61,7 @@
   % for a one-time use font
 \end{textblock}
 
-\begin{textblock}{0.06}(0.12,0.56)
+\begin{textblock}{0.07}(0.09,0.56)
   \includegraphics[width=\textwidth, angle=30]{fig/arrow}
 \end{textblock}
 
@@ -93,7 +95,7 @@
 
 \end{textblock}
 
-\begin{textblock}{0.2805}[1,1](0.4805,0.90)
+\begin{textblock}{0.2805}[1,1](0.4805,0.95)
   \includegraphics[width=\textwidth]{fig/logo}
 \end{textblock}
 
@@ -102,7 +104,7 @@
 % duplicated from the left, except I added 0.5 to all the x-coordinates
 
 \begin{textblock}{0.2}(0.515,0.03)
-  \includegraphics[width=4cm]{fig/speaking}
+  \includegraphics[width=\textwidth]{\badge}
 \end{textblock}
 
 \begin{textblock}{0.2405}(0.74,0.03)
@@ -129,8 +131,8 @@
 
 \end{textblock}
 
-\begin{textblock}{0.1505}[0,1](0.69,0.90)
-  \includegraphics[width=6cm]{fig/logo}
+\begin{textblock}{0.35}[0.5,1](0.75,0.95)
+  \includegraphics[width=\textwidth]{fig/logo}
 \end{textblock}
 
 % Corner markers
