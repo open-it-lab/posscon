@@ -1,18 +1,31 @@
 \documentclass{article}
 \usepackage[margin=1cm]{geometry}
 \usepackage{graphicx}
+\usepackage{ifthen}
 \setlength{\parindent}{0pt}
 \setlength{\fboxsep}{0pt}%
+\providecommand\one{lanyard.pdf}
+\providecommand\two{}
+\providecommand\three{}
 \begin{document}
 \begin{center}
-  \includegraphics{lanyard.pdf}
+  \includegraphics{\one}
 
   \vspace{2em}
 
-  \includegraphics{lanyard.pdf}
+  {%
+    \ifthenelse{\equal{\two}{}}
+    {}
+    {\includegraphics{\two}}
+  }
 
   \vspace{2em}
 
-  \includegraphics{lanyard.pdf}
+  {%
+    \ifthenelse{\equal{\three}{}}
+    {}
+    {\includegraphics{\three}}
+  }
+
 \end{center}
 \end{document}
