@@ -33,17 +33,6 @@ file=reg-temp.csv
 # so check that the input does not have semicolons in it, or quotes
 # for that matter
 while read p; do
-    # fname=`echo $p | awk -F\; '{print $6}'`
-    # lname=`echo $p | awk -F\; '{print $5}'`
-    # org=`echo $p | awk -F\; '{print $7}'`
-    # title=`echo $p | awk -F\; '{print $28}'`
-    # email=`echo $p | awk -F\; '{print $17}'`
-    # phone=`echo $p | awk -F\; '{print $16}'`
-    # city=`echo $p | awk -F\; '{print $12}'`
-    # state=`echo $p | awk -F\; '{print $13}'`
-    # lname=`echo $p | awk -F\; '{print $1}'`
-    # lname=`echo $p | awk -F\; '{gsub("'\''", "\\'\''");print $1}'`
-    # fname=`echo $p | awk -F\; '{gsub("'\\''", "\\\\'\\''");print $2}'`
     lname=`echo $p | awk -F\; '{print $1}'`
     lnameclean=`echo "$lname" | sed 's/[^a-zA-Z0-9]//g'`
     fname=`echo $p | awk -F\; '{print $2}'`
