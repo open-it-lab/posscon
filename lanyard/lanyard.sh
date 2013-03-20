@@ -9,6 +9,6 @@ then
   exit $E_BADARGS
 fi
 
-xelatex --jobname=$1 "\newcommand\fname{$2}\newcommand\lname{$3}\newcommand\titlename{$4}\newcommand\orgname{$5}\newcommand\qrcode{$6}\newcommand\badge{$7}\input{lanyard.tex}"
+xelatex --jobname=$1 "\newcommand\fname{$2}\newcommand\lname{$3}\newcommand\titlename{$4}\newcommand\orgname{$5}\newcommand\qrcode{$6}\newcommand\badge{$7}\newcommand\limited{$8}\input{lanyard.tex}"
 # cleanup the mess
 rm $1.{log,aux}

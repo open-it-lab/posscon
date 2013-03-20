@@ -40,7 +40,17 @@ while read p; do
     email=`echo $p | awk -F\; '{print $4}'`
     org=`echo $p | awk -F\; '{gsub("&", "\\\\\\\\&");print $5}'`
     title=`echo $p | awk -F\; '{print $6}'`
+    limited=`echo $p | awk -F\; '{print $7}'`
     titleclean=`echo "$title" | sed 's/[^a-zA-Z0-9]//g'`
+
+    limitedfull=""
+    if [[ "$limited" = "W" ]] ; then
+        limitedfull="Wednesday"
+    elif [[ "$limited" = "T" ]] ; then
+        limitedfull="Thursday"
+    else
+        limitedfull=""
+    fi    
 
     h=`echo "$fname$lname$phone$email$org$title" | md5sum | awk '{print $1}'`
 
@@ -68,9 +78,9 @@ while read p; do
     mogrify -shave 200x200 qrcode/$h.png
 
     if [[ $title = "SPEAKER" ]]; then
-        ./lanyard.sh output/$titleclean-$lnameclean-$h "$fname" "$lname" "$title" "$org" qrcode/$h.png fig/speaking
+        ./lanyard.sh output/$titleclean-$lnameclean-$h "$fname" "$lname" "$title" "$org" qrcode/$h.png fig/speaking "$limitedfull"
     else
-        ./lanyard.sh output/$titleclean-$lnameclean-$h "$fname" "$lname" "$title" "$org" qrcode/$h.png fig/attending
+        ./lanyard.sh output/$titleclean-$lnameclean-$h "$fname" "$lname" "$title" "$org" qrcode/$h.png fig/attending "$limitedfull"
     fi
 
     # use this to only run one at a time, for sanity checking
