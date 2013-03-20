@@ -13,11 +13,15 @@ then
   exit $E_BADARGS
 fi
 
+# variables
+gravatar=true
+
 # use separate directories so that the job is parallelizable
 mkdir output/
 mkdir vcard/
 mkdir mecard/
 mkdir qrcode/
+mkdir img/
 
 if [[ $3 ]]; then
     tail -n $3 $1 > reg-temp.csv
@@ -66,22 +70,54 @@ while read p; do
 # VERSION:2.1
 # N:$lname;$fname
 # FN:$fname $lname
-# TITLE:$title
-# ORG:$org
+# TITLE:$title" > vcard/$h.vcard
+
+#     emailhash=`echo -n $email | md5sum | awk '{print $1}'`
+#     echo $emailhash
+#     echo "curl -I  --stderr /dev/null http://www.gravatar.com/avatar/$emailhash?d=404 | head -1 | cut -d' ' -f2"
+#     echo `curl -I  --stderr /dev/null http://www.gravatar.com/avatar/$emailhash?d=404 | head -1 | cut -d' ' -f2`
+#     if [[ "`curl -I  --stderr /dev/null http://www.gravatar.com/avatar/$emailhash?d=404 | head -1 | cut -d' ' -f2 | sed 's/[^a-zA-Z0-9]//g'`" != "404" ]] ; then
+#         echo "PHOTO;JPEG:http://www.gravatar.com/avatar/$emailhash" >> vcard/$h.vcard
+#     fi
+
+#     echo "ORG:$org
 # ADR;HOME:;;;$city;$state
 # TEL;CELL:$phone
 # EMAIL:$email
-# END:VCARD" > vcard/$h.vcard
+# END:VCARD" >> vcard/$h.vcard
+
+
+
+#     echo "BEGIN:VCARD
+# VERSION:3.0
+# N:$lname;$fname
+# FN:$fname $lname
+# ORG:$org" > vcard/$h.vcard
+
+#     emailhash=`echo -n $email | md5sum | awk '{print $1}'`
+#     if [[ "`curl -I  --stderr /dev/null http://www.gravatar.com/avatar/$emailhash?d=404 | head -1 | cut -d' ' -f2 | sed 's/[^a-zA-Z0-9]//g'`" != "404" ]] ; then
+#         echo "PHOTO;VALUE=URL;TYPE=JPEG:http://www.gravatar.com/avatar/$emailhash" >> vcard/$h.vcard
+#     fi
+
+#     echo "TEL;TYPE=CELL:$phone
+# EMAIL;TYPE=PREF,INTERNET:$email
+# END:VCARD" >> vcard/$h.vcard
 
     # qrencode -o qrcode/$h.png -s 50 < vcard/$h.vcard
     qrencode -o qrcode/$h.png -s 50 < mecard/$h.mecard
     mogrify -shave 200x200 qrcode/$h.png
 
-    if [[ $title = "SPEAKER" ]]; then
-        ./lanyard.sh output/$titleclean-$lnameclean-$h "$fname" "$lname" "$title" "$org" qrcode/$h.png fig/speaking "$limitedfull"
+    emailhash=`echo -n $email | md5sum | awk '{print $1}'`
+    if [[ "$gravatar" == "true" && "`curl -I  --stderr /dev/null http://www.gravatar.com/avatar/$emailhash?d=404 | head -1 | cut -d' ' -f2 | sed 's/[^a-zA-Z0-9]//g'`" != "404" ]] ; then
+        wget "http://www.gravatar.com/avatar/$emailhash?s=500" -O "img/$h.png"
+        badgename="img/$h.png"
+    elif [[ $title = "SPEAKER" ]]; then
+        badgename="fig/speaking"
     else
-        ./lanyard.sh output/$titleclean-$lnameclean-$h "$fname" "$lname" "$title" "$org" qrcode/$h.png fig/attending "$limitedfull"
+        badgename="fig/attending"
     fi
+
+    ./lanyard.sh output/$titleclean-$lnameclean-$h "$fname" "$lname" "$title" "$org" qrcode/$h.png $badgename "$limitedfull"
 
     # use this to only run one at a time, for sanity checking
     # break
