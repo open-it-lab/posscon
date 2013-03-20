@@ -13,6 +13,6 @@ clean:
 
 deepclean: 
 	-rm *.{pdf,ps,dvi,fls,aux,bbl,blg,brf,log} *~
-	-rm -rf reg-temp.csv output/ vcard/ mecard/ qrcode/
+	-rm -rf reg-temp.csv output/ vcard/ mecard/ qrcode/ img/
 
 
